@@ -1,9 +1,9 @@
 
-import React from 'react'
-import {renderToString} from 'react-dom/server'
-import {match, RouterContext, createRoutes } from 'react-router'
-import Routes from './src/routes'
-console.log(createRoutes);
+const React = require('react');
+let {renderToString} = require('react-dom/server')
+let {match, RouterContext, createRoutes } = require('react-router')
+let Routes = require('./src/routes')
+
 const cRoutes = createRoutes(Routes)
 
 function handleRequest(req, res){
