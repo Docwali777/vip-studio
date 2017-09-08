@@ -28,7 +28,8 @@
   "scripts": {
     "dev": "webpack --env=dev ",
     "build": "webpack --config webpack.prod.js",
-    "start": "node server.js",
+    "start": "node public/server.js",
+    "serverBuild": "webpack --config webpack.server.js",
     "conserver": "concurrently \" yarn run start \"  \" yarn run dev \" "
   }
 }
