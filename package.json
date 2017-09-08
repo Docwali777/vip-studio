@@ -27,7 +27,7 @@
   },
   "scripts": {
     "dev": "webpack --env=dev ",
-    "build": "webpack --config webpack.prod.js",
+    "build": "concurrently \"webpack --config webpack.prod.js \" \" yarn run serverBuild\" ",
     "start": "node public/server.bundle.js",
     "serverBuild": "webpack --config webpack.server.js",
     "conserver": "concurrently \" yarn run start \"  \" yarn run dev \" "
