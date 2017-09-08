@@ -92,9 +92,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactBootstrap = __webpack_require__(11);
+var _reactBootstrap = __webpack_require__(10);
 
-var _reactRouterBootstrap = __webpack_require__(12);
+var _reactRouterBootstrap = __webpack_require__(11);
 
 var _reactRouter = __webpack_require__(1);
 
@@ -177,16 +177,14 @@ exports.default = Menu;
 "use strict";
 
 
-__webpack_require__(4)({
-  presets: ["es2015", "react", "stage-0"]
-});
-
-var express = __webpack_require__(5);
+var express = __webpack_require__(4);
 var app = express();
 var PORT = process.env.PORT || 3000;
-var path = __webpack_require__(6);
-var ejs = __webpack_require__(7);
-var requestHandler = __webpack_require__(8);
+var path = __webpack_require__(5);
+var ejs = __webpack_require__(6);
+var requestHandler = __webpack_require__(7);
+
+console.log('WALI');
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -194,35 +192,29 @@ app.use(express.static('public'));
 app.use(requestHandler);
 
 app.listen(PORT, function () {
-  console.log("server: " + PORT);
+  console.log('server: ' + PORT);
 });
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = require("babel-register");
+module.exports = require("express");
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = require("express");
+module.exports = require("path");
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = require("path");
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
 module.exports = require("ejs");
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -232,11 +224,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _server = __webpack_require__(9);
+var _server = __webpack_require__(8);
 
 var _reactRouter = __webpack_require__(1);
 
-var _routes = __webpack_require__(10);
+var _routes = __webpack_require__(9);
 
 var _routes2 = _interopRequireDefault(_routes);
 
@@ -277,13 +269,13 @@ function handleRequest(req, res) {
 module.exports = handleRequest;
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -299,19 +291,19 @@ var _Menu = __webpack_require__(2);
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
-var _app = __webpack_require__(13);
+var _app = __webpack_require__(12);
 
 var _app2 = _interopRequireDefault(_app);
 
-var _Contact = __webpack_require__(14);
+var _Contact = __webpack_require__(13);
 
 var _Contact2 = _interopRequireDefault(_Contact);
 
-var _About = __webpack_require__(15);
+var _About = __webpack_require__(14);
 
 var _About2 = _interopRequireDefault(_About);
 
-var _Home = __webpack_require__(16);
+var _Home = __webpack_require__(15);
 
 var _Home2 = _interopRequireDefault(_Home);
 
@@ -344,19 +336,19 @@ _react2.default.createElement(
 ;
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-bootstrap");
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-router-bootstrap");
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -411,7 +403,7 @@ var App = function (_Component) {
 exports.default = App;
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -461,7 +453,7 @@ var Contact = function (_Component) {
 exports.default = Contact;
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -511,7 +503,7 @@ var About = function (_Component) {
 exports.default = About;
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

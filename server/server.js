@@ -1,13 +1,13 @@
-require('babel-register')({
-  presets: ["es2015", "react", "stage-0"]
-})
 
 const express = require('express');
 const app = express()
 const PORT = process.env.PORT || 3000
 const path = require('path');
 const ejs = require('ejs');
-const requestHandler = require('./requestHandler')
+const requestHandler = require('../requestHandler')
+
+console.log('WALI');
+
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
