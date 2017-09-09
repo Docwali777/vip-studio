@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 var CompressionPlugin = require("compression-webpack-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
@@ -50,6 +51,10 @@ module.exports = {
         threshold: 10240,
         minRatio: 0,
         deleteOriginalAssets: true
-      })
+      }),
+       new CleanWebpackPlugin(['public'], {
+         verbose:  true,
+         dry:      false
+       }),
   ]
 }
