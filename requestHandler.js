@@ -16,7 +16,7 @@ const cRoutes = createRoutes(Routes)
 
 function handleRequest(req, res){
   const Routes = {
-    routes: cRoutes,
+    routes: Routes,
     location: req.url,
 
   }

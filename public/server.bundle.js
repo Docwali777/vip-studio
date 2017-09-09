@@ -184,15 +184,35 @@ var path = __webpack_require__(5);
 var ejs = __webpack_require__(6);
 var requestHandler = __webpack_require__(7);
 
-console.log('WALI');
-
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+
+app.use(function (req, res, next) {
+    var originalPath = req.path;
+    if (!originalPath.endsWith(".js")) {
+        next();
+        return;
+    }
+    try {
+        var stats = fs.statSync(path.join("public", req.path + '.gz'));
+        res.append('Content-Encoding', 'gzip');
+        res.setHeader('Vary', 'Accept-Encoding');
+        res.setHeader('Cache-Control', 'public, max-age=512000');
+        req.url = req.url + '.gz';
+
+        var type = mime.lookup(path.join("public", originalPath));
+        if (typeof type != 'undefined') {
+            var charset = mime.charsets.lookup(type);
+            res.setHeader('Content-Type', type + (charset ? '; charset=' + charset : ''));
+        }
+    } catch (e) {}
+    next();
+});
 
 app.use(requestHandler);
 
 app.listen(PORT, function () {
-  console.log('server: ' + PORT);
+    console.log('server: ' + PORT);
 });
 
 /***/ }),
@@ -246,7 +266,7 @@ var cRoutes = (0, _reactRouter.createRoutes)(_routes2.default);
 
 function handleRequest(req, res) {
   var Routes = {
-    routes: cRoutes,
+    routes: Routes,
     location: req.url
 
   };
@@ -323,17 +343,13 @@ var Routes = function Routes() {
   );
 };
 
-module.exports =
-// <Router history={browserHistory}>
-_react2.default.createElement(
+module.exports = _react2.default.createElement(
   _reactRouter.Route,
   { path: '/', component: _app2.default },
   _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
   _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _About2.default }),
   _react2.default.createElement(_reactRouter.Route, { path: '/contact', component: _Contact2.default })
-)
-// </Router>
-;
+);
 
 /***/ }),
 /* 10 */
