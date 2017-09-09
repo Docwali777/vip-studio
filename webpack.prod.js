@@ -56,12 +56,11 @@ module.exports = {
        new CleanWebpackPlugin(['public'], {
          verbose:  true,
          dry:      false
+       }),
+       new HtmlWebpackPlugin({
+         title: 'VIP LASHES',
+         template: 'views/index.ejs',
+         filename: 'views/index.ejs'
        })
-      //  ,
-      //  new HtmlWebpackPlugin({
-      //    title: 'VIP LASHES',
-      //    template: 'views/index.ejs',
-      //    filename: 'views/index.ejs'
-      //  })
   ]
 }
