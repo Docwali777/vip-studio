@@ -3,6 +3,7 @@ const path = require('path');
 
 var CompressionPlugin = require("compression-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -50,11 +51,17 @@ module.exports = {
         test: /\.js$|\.css$|\.html$/,
         threshold: 10240,
         minRatio: 0,
-        deleteOriginalAssets: true
+        // deleteOriginalAssets: true
       }),
        new CleanWebpackPlugin(['public'], {
          verbose:  true,
          dry:      false
-       }),
+       })
+      //  ,
+      //  new HtmlWebpackPlugin({
+      //    title: 'VIP LASHES',
+      //    template: 'views/index.ejs',
+      //    filename: 'views/index.ejs'
+      //  })
   ]
 }

@@ -1,3 +1,9 @@
+if(process.env.NODE_ENV !== 'preduction'){
+  require('babel-register')({
+    presets: ["es2015", "react", "stage-0"]
+  })
+}
+
 
 const express = require('express');
 const app = express()
@@ -6,32 +12,17 @@ const path = require('path');
 const ejs = require('ejs');
 const requestHandler = require('../requestHandler')
 
+
+
 app.set('view engine', 'ejs')
+// app.set('views', '/public/views')
 app.use(express.static('public'))
 
-app.use(function(req, res, next) {
-    var originalPath = req.path;
-    if(!originalPath.endsWith(".js")) {
-        next();
-        return;
-    }
-    try {
-        var stats = fs.statSync(path.join("public", `${req.path}.gz`));
-        res.append('Content-Encoding', 'gzip');
-        res.setHeader('Vary', 'Accept-Encoding');
-        res.setHeader('Cache-Control', 'public, max-age=512000');
-        req.url = `${req.url}.gz`;
-
-        var type = mime.lookup(path.join("public", originalPath));
-        if (typeof type != 'undefined') {
-            var charset = mime.charsets.lookup(type);
-            res.setHeader('Content-Type', type + (charset ? '; charset=' + charset : ''));
-        }
-    } catch(e) {
-    }
-    next();
-})
-
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
 
 app.use(requestHandler)
 
